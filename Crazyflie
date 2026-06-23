@@ -1,4 +1,7 @@
 ##Running gazebo sim:
+
+docker exec -it bitcraze_ros2_gazebo bash
+
 cd ~/crazyflie_ws/crazysim_docker_gazebo
 ./run_container.sh
 
