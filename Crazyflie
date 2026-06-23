@@ -1,0 +1,7 @@
+##Running gazebo sim:
+
+source /opt/ros/humble/setup.bash
+source /root/crazyflie_mapping_demo/ros2_ws/install/setup.bash
+export GZ_SIM_RESOURCE_PATH=/root/crazyflie_mapping_demo/simulation_ws/crazyflie-simulation/simulator_files/gazebo/
+
+ros2 launch crazyflie_ros2_multiranger_bringup simple_mapper_simulation.launch.py
