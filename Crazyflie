@@ -20,3 +20,13 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 # Bring the controller: 
 uvx cfclient
+
+-------------------------
+apt update
+apt install -y curl git python3-pip libxcb-xinerama0 libxcb-cursor0 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-randr0 libxcb-shape0 libxcb-xfixes0
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source /root/.local/bin/env
+
+uvx --version
+uvx cfclient
