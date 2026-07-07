@@ -54,3 +54,20 @@ source /root/crazyflie_mapping_demo/ros2_ws/install/setup.bash
 
 ros2 launch crazyflie_ros2_multiranger_bringup simple_mapper_simulation.launch.py
 --------------------------------------------------------------------------------
+cd /root/crazyflie_mapping_demo/ros2_ws
+
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+export GZ_SIM_RESOURCE_PATH=/root/crazyflie_mapping_demo/ros2_ws/src/ros_gz_crazyflie/ros_gz_crazyflie_gazebo/models:/root/crazyflie_mapping_demo/simulation_ws/crazyflie-simulation/simulator_files/gazebo
+
+export GZ_SIM_SYSTEM_PLUGIN_PATH=/root/crazyflie_mapping_demo/ros2_ws/install/crazyflie_lqr_gz_plugin/lib
+
+gz sim -v 4 \
+/root/crazyflie_mapping_demo/ros2_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/worlds/crazyflie_world.sdf \
+-r
+
+
+----------------------------------------------------------------------------------------
+
+
