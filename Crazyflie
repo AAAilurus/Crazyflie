@@ -35,17 +35,7 @@ uvx cfclient
 xhost +local:root
 xhost +local:docker
 
-docker run -it --rm \
-  --name bitcraze_ros2_gazebo \
-  --network host \
-  --privileged \
-  --device /dev/dri:/dev/dri \
-  -e DISPLAY=$DISPLAY \
-  -e QT_X11_NO_MITSHM=1 \
-  -e XDG_RUNTIME_DIR=/tmp/runtime-root \
-  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  -v /dev/dri:/dev/dri \
-  bitcraze:ros2-gazebo
+docker start -ai bitcraze_ros2_gazebo
 
 
 
