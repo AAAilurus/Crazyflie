@@ -57,7 +57,6 @@ gz sim -v 4 \
 /root/crazyflie_mapping_demo/ros2_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/worlds/crazyflie_world.sdf \
 -r
 
-
 ----------------------------------------------------------------------------------------
 
 
