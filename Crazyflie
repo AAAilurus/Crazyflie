@@ -65,3 +65,36 @@ gz sim -v 4 \
   --z 1.0 \
   --yaw 0.7854 \
   --duration 10
+
+
+------------------------------------------
+
+cd /root/crazyflie_mapping_demo/ros2_ws
+
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+./lqr_crazyflie_gazebo.py \
+  --x 0.0 --y 0.0 --z 1.0 --yaw 0.0 \
+  --takeoff-seconds 15 \
+  --hover-seconds 10 \
+  --land-seconds 10 \
+  --land-z 0.05
+
+
+----------------------------------------------
+
+cd /root/crazyflie_mapping_demo/ros2_ws
+
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+./z_disturbance_publisher.py \
+  --time 10.0 \
+  --duration 0.8 \
+  --amplitude -0.1
+
+----------------------------------------
+
+
+
