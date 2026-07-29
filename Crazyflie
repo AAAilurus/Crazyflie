@@ -95,6 +95,19 @@ source install/setup.bash
   --amplitude -0.1
 
 ----------------------------------------
+cd /root/usc_lqr_gazebo_test/scripts
+
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+
+./usc_lqr_position_gazebo.py \
+  --x 0.0 --y 0.0 --z 1.0 --yaw-deg 0.0 \
+  --takeoff-seconds 10 \
+  --hover-seconds 8 \
+  --land-seconds 8 \
+  --land-z 0.05
+
+--------------------------------------------
 
 
 
