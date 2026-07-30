@@ -109,5 +109,18 @@ source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
 
 --------------------------------------------
 
+cd /root/usc_lqr_gazebo_test/ros2_ws
+
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+export GZ_SIM_SYSTEM_PLUGIN_PATH=/root/usc_lqr_gazebo_test/ros2_ws/install/crazyflie_lqr_gz_plugin/lib
+export GZ_SIM_RESOURCE_PATH=/root/usc_lqr_gazebo_test/ros2_ws/src/ros_gz_crazyflie/ros_gz_crazyflie_gazebo/models
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/root/usc_lqr_gazebo_test/ros2_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo
+
+ros2 launch ros_gz_crazyflie_bringup crazyflie_simulation.launch.py
+
+-----------------------------------------------------------
+
 
 
