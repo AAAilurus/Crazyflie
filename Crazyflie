@@ -122,5 +122,14 @@ ros2 launch ros_gz_crazyflie_bringup crazyflie_simulation.launch.py
 
 -----------------------------------------------------------
 
+cd /root/usc_lqr_gazebo_test/scripts
 
+./usc_lqr_position_gazebo_step_demo.py \
+  --x 0.0 --y 0.0 --z 1.0 --yaw-deg 0.0 \
+  --takeoff-seconds 7 \
+  --hover-seconds 13 \
+  --land-seconds 8 \
+  --land-z 0.0
+
+------------------------------------------------------------------
 
