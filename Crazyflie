@@ -143,5 +143,10 @@ export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/root/usc_lqr_gazebo_test/ros2
 
 ros2 launch ros_gz_crazyflie_bringup crazyflie_two_simulation.launch.py
 -----------------------------------------------------------------------------------
+#flash
+cd ~/crazyflie_ws/sala4_crazyflie/cflib_python
+source /opt/ros/humble/setup.bash
 
+uv run --with cflib python3 motorRawTest.py \
+  radio://0/80/2M/E7E7E7E7E7
 
