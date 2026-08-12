@@ -154,3 +154,23 @@ uv run --with cflib python3 motorRawTest.py \
 cd ~/crazyflie_ws/crazyflie-firmware
 
 CLOAD_CMDS="-w radio://0/80/2M/E7E7E7E7E7" make cload
+
+
+
+-----------------------------------------------------------------
+
+
+source /opt/ros/humble/setup.bash
+
+uv run \
+  --with cflib \
+  --with numpy \
+  --with scipy \
+  --with pynput \
+  python3 lqr_lighthouse_200hz_from_working_baseline.py \
+  --uri radio://0/80/2M/E7E7E7E7E7 \
+  --loop-hz 200 \
+  --x 0.0 \
+  --y 0.0 \
+  --z 0.20 \
+  --no-land
