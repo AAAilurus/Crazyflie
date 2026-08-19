@@ -1,17 +1,6 @@
 #!/usr/bin/env python3
 
 """
-Run the USC cascaded PID controller in Gazebo.
-
-This is NOT the LQR version yet.
-This file tests the original USC PID controller with Gazebo odometry.
-
-Architecture:
-Gazebo /crazyflie/odom
-    -> USC State / SensorData
-    -> USC ControllerPID
-    -> PWM-like motor commands
-    -> Gazebo motor speeds on /crazyflie/python_motor_speed
 """
 
 import argparse
