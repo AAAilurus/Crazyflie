@@ -167,10 +167,19 @@ uv run \
   --with numpy \
   --with scipy \
   --with pynput \
-  python3 lqr_lighthouse_200hz_from_working_baseline.py \
+ 
+
+--------------------------------------------------------------------------------
+python3 UTA_lighthouse.py \
   --uri radio://0/80/2M/E7E7E7E7E7 \
+  --x 0.0 --y 0.0 --z 1.0 --yaw 0.0 \
+  --takeoff-seconds 4 \
+  --run-seconds 10 \
+  --land-z 0.05 \
+  --land-seconds 6 \
   --loop-hz 200 \
-  --x 0.0 \
-  --y 0.0 \
-  --z 0.20 \
-  --no-land
+  2>&1 | tee lqr_1m_35000_slope11000.txt
+
+-----------------------------------------------------------------------------------------
+
+
