@@ -202,3 +202,15 @@ python3 UTA_lighthouse_follower_learned.py \
   --loop-hz 200 \
   2>&1 | tee follower_learned_QK_030m.txt
 
+
+----------------------------------------------------------------------------------
+python3 run_leader_follower_real.py \
+  --leader-uri radio://0/80/2M/E7E7E7E7E7 \
+  --follower-uri radio://0/90/2M/E7E7E7E702 \
+  --z 0.30 \
+  --takeoff-seconds 4 \
+  --run-seconds 5 \
+  --land-z 0.10 \
+  --land-seconds 6 \
+  --loop-hz 200 \
+  2>&1 | tee dual_leader_follower_030m.txt
