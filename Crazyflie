@@ -192,6 +192,13 @@ python3 UTA_lighthouse_irl_collect.py \
   2>&1 | tee irl_excitation_1m.txt
 
 -----------------------------------------------------------------------------------
-
-
+python3 UTA_lighthouse_follower_learned.py \
+  --uri radio://0/80/2M/E7E7E7E7E7 \
+  --x 0.0 --y 0.0 --z 0.30 --yaw 0.0 \
+  --takeoff-seconds 4 \
+  --run-seconds 5 \
+  --land-z 0.10 \
+  --land-seconds 6 \
+  --loop-hz 200 \
+  2>&1 | tee follower_learned_QK_030m.txt
 
