@@ -227,3 +227,18 @@ python3 run_two_cf_182749_SEQUENTIAL.py \
   --loop-hz 200 \
   --gap-seconds 3 \
   2>&1 | tee dual_demo_182749/sequential_full.txt
+
+
+-----------------------------------------------------------------------------------------
+
+python3 run_two_cf_182749_SEQUENTIAL.py \
+  --leader-uri radio://0/80/2M/E7E7E7E7E7 \
+  --follower-uri radio://0/80/2M/E7E7E7E702 \
+  --z 1.0 \
+  --takeoff-seconds 7 \
+  --run-seconds 10 \
+  --land-z 0.05 \
+  --land-seconds 6 \
+  --loop-hz 200 \
+  --gap-seconds 3 \
+  2>&1 | tee dual_demo_182749/sequential_20k_10deg.txt
