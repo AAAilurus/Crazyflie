@@ -168,6 +168,23 @@ source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
 
 python3 test_leader_k.py \
   --namespace cf_leader \
+  --x 0.0 \
+  --y 0.0 \
+  --z 1.0 \
+  --takeoff-seconds 7 \
+  --hover-seconds 10 \
+  --land-seconds 7 \
+  --land-z 0.0 \
+  --k-file gains/K_star_model.csv \
+  --log-file data/leader/leader_only_expert.csv
+------------------------------------------------------------------------------------
+cd /root/usc_lqr_gazebo_test/IRL
+
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+
+python3 test_leader_k.py \
+  --namespace cf_leader \
   --x 0.0 --y 0.0 --z 1.0 \
   --takeoff-seconds 7 \
   --hover-seconds 10 \
