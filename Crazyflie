@@ -59,6 +59,24 @@ gz sim -v 4 \
 
 ----------------------------------------------------------------------------------------
 
+cd /root/usc_lqr_gazebo_test/IRL
+
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+
+python3 test_leader_k.py \
+  --namespace cf_leader \
+  --x 0.0 \
+  --y 0.0 \
+  --z 1.0 \
+  --takeoff-seconds 7 \
+  --hover-seconds 10 \
+  --land-seconds 7 \
+  --land-z 0.0 \
+  --k-file gains/K_star_model.csv \
+  --log-file data/leader/leader_only_expert.csv
+---------------------------------------------------------------------------------------
+
 ./lqr_sim_command.py \
   --x 0.3 \
   --y 0.3 \
@@ -143,6 +161,38 @@ export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/root/usc_lqr_gazebo_test/ros2
 
 ros2 launch ros_gz_crazyflie_bringup crazyflie_two_simulation.launch.py
 -----------------------------------------------------------------------------------
+cd /root/usc_lqr_gazebo_test/IRL
+
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+
+python3 test_leader_k.py \
+  --namespace cf_leader \
+  --x 0.0 --y 0.0 --z 1.0 \
+  --takeoff-seconds 7 \
+  --hover-seconds 10 \
+  --land-seconds 7 \
+  --land-z 0.0 \
+  --k-file gains/K_star_model.csv \
+  --log-file data/leader/dual_demo_leader_modelK.csv &
+
+LEADER_PID=$!
+
+python3 test_follower_k.py \
+  --namespace cf_follower \
+  --x 1.0 --y 0.0 --z 1.0 \
+  --takeoff-seconds 7 \
+  --hover-seconds 10 \
+  --land-seconds 7 \
+  --land-z 0.0 \
+  --k-file gains/K_learned_model.csv \
+  --log-file data/follower/dual_demo_follower_learnedK.csv &
+
+FOLLOWER_PID=$!
+
+wait "$LEADER_PID"
+wait "$FOLLOWER_PID"
+---------------------------------------------------------------------------
 
 cd ~/crazyflie_ws/sala4_crazyflie/cflib_python
 source /opt/ros/humble/setup.bash
