@@ -35,7 +35,6 @@ python3 IRL_real/learning/spsa_matlab_version_offpolicy.py \
 ----------------------------------------------------------
 
 cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
-
 source /opt/ros/humble/setup.bash
 
 python3 UTA_lighthouse.py \
@@ -54,7 +53,6 @@ python3 UTA_lighthouse.py \
 ------------------------------------
 
 cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
-
 source /opt/ros/humble/setup.bash
 
 python3 UTA_lighthouse_follower_10000.py \
@@ -70,4 +68,15 @@ python3 UTA_lighthouse_follower_10000.py \
   --loop-hz 200 \
   2>&1 | tee real_compare_10000/follower_learned.txt
 
------------------------_
+------------------------------------------------------
+
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+source plot_env/bin/activate
+
+python plot_leader_follower_z_10000.py
+
+----------------------------------------------------
+
+python plot_k_convergence_10000.py
+----------------------------------------------------
+
