@@ -374,3 +374,67 @@ python3 UTA_lighthouse_SPSA_learned_test.py \
   2>&1 | tee follower_Klearned_takeoff_hover_land.txt
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+#Gazebo
+
+python3 -u gazebo_irl_hover21.py \
+  --namespace cf_leader --x 0.0 \
+  --k-file gains/K_star_model_m0282_RUN.csv \
+  --eta-roll-deg 0.8 \
+  --eta-pitch-deg 0.8 \
+  --eta-delta-T-scale-n 0.035 \
+  --eta-white 1.0 \
+  --train-seconds 63 \
+  --training-csv "$run_dir/TRAIN.csv" \
+  2>&1 | tee "$run_dir/TRAIN.log"
+
+--------------------------------------------
+(
+  set -e
+  set -o pipefail
+  test -s "$run_dir/TRAIN.csv"
+
+  python3 -u irl_inverse_qlearning.py \
+    --csv "$run_dir/TRAIN.csv" \
+    --method spsa \
+    --q-structure diag \
+    --max-iter 10000 \
+    --result-dir "$run_dir/SPSA" \
+    2>&1 | tee "$run_dir/SPSA.log"
+)
+---------------------------------------------
+
+if test -s "$run_dir/SPSA/K_learned.csv"; then
+  python3 -u gazebo_irl_hover21.py \
+    --namespace cf_leader --x 0.0 \
+    --k-file gains/K_star_model_m0282_RUN.csv \
+    --eta-roll-deg 0 --eta-pitch-deg 0 \
+    --eta-delta-T-scale-n 0 \
+    --no-steps --train-seconds 21 \
+    --training-csv "$run_dir/DEMO_LEADER.csv" \
+    > "$run_dir/DEMO_LEADER.log" 2>&1 &
+  leader_pid=$!
+
+  python3 -u gazebo_irl_hover21.py \
+    --namespace cf_follower --x 1.0 \
+    --k-file "$run_dir/SPSA/K_learned.csv" \
+    --eta-roll-deg 0 --eta-pitch-deg 0 \
+    --eta-delta-T-scale-n 0 \
+    --no-steps --train-seconds 21 \
+    --training-csv "$run_dir/DEMO_FOLLOWER.csv" \
+    > "$run_dir/DEMO_FOLLOWER.log" 2>&1 &
+  follower_pid=$!
+
+  echo "Both controllers launched."
+else
+  echo "Learned gain missing. Complete SPSA first."
+fi
+
+-------------------------------------------
+python3 plot_z_leader_follower.py \
+  "$run_dir/DEMO_LEADER.csv" \
+  "$run_dir/DEMO_FOLLOWER.csv" \
+  "$run_dir/demo_z_hover.png"
+
+python3 plot_k_style.py \
+  "$run_dir/SPSA/history.csv" \
+  "$run_dir/SPSA/K_convergence.png"
