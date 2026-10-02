@@ -1,0 +1,35 @@
+#know the coordinates of crazyflie in vicon
+timeout -k 2s 10s python3 -u - <<'PY'
+import motioncapture
+
+EXPECTED = {"Crazyflie_Follower", "Crazyflie_L"}
+
+mc = motioncapture.connect("vicon", {"hostname": "10.88.1.1"})
+print("Connected. Waiting for both objects...")
+
+while True:
+    mc.waitForNextFrame()
+    bodies = mc.rigidBodies
+
+    if not EXPECTED.issubset(bodies.keys()):
+        continue
+
+    for name in sorted(EXPECTED):
+        body = bodies[name]
+
+        print("\nObject:", name)
+        print("Position:", body.position)
+        print("Available fields:",
+              [field for field in dir(body) if not field.startswith("_")])
+
+        if hasattr(body, "rotation"):
+            print("Rotation:", body.rotation)
+
+        if hasattr(body, "quaternion"):
+            print("Quaternion:", body.quaternion)
+
+    break
+PY
+
+--------------------------------------------------------------------------
+
