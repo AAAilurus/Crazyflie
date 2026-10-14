@@ -1,3 +1,9 @@
+python3 -c "
+import cflib.crtp; cflib.crtp.init_drivers()
+print('radios:', cflib.crtp.scan_interfaces())
+print('E7E7:', [f[0] for f in cflib.crtp.scan_interfaces(0xE7E7E7E7E7)])
+"
+-----------------------------------------------------------------------
 #know the coordinates of crazyflie in vicon
 timeout -k 2s 10s python3 -u - <<'PY'
 import motioncapture
