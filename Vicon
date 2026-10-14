@@ -4,7 +4,7 @@ import motioncapture
 
 EXPECTED = {"Crazyflie_Follower", "Crazyflie_L"}
 
-mc = motioncapture.connect("vicon", {"hostname": "10.88.1.1"})
+mc = motioncapture.connect("vicon", {"hostname": "169.254.221.215"})
 print("Connected. Waiting for both objects...")
 
 while True:
