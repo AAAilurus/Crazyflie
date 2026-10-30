@@ -1,0 +1,14 @@
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+export GZ_SIM_SYSTEM_PLUGIN_PATH=/root/usc_lqr_gazebo_test/ros2_ws/install/crazyflie_lqr_gz_plugin/lib
+export GZ_SIM_RESOURCE_PATH=/root/usc_lqr_gazebo_test/ros2_ws/src/ros_gz_crazyflie/ros_gz_crazyflie_gazebo/models
+ros2 launch ros_gz_crazyflie_bringup crazyflie_two_simulation.launch.py
+
+  ----------------------------------------------------------------------------------------------------------------
+
+python3 -u gazebo_irl_hover21.py \
+  --namespace cf_leader --x 0.0 \
+  --k-file cdc/forward_out/K_star_task1.csv \
+  --eta-roll-deg 0.8 --eta-pitch-deg 0.8 --eta-delta-T-scale-n 0.035 \
+  --eta-white 1.0 --eta-seed 1 --train-seconds 63 \
+  --training-csv cdc/data/task1_run1.csv
