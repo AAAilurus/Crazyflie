@@ -13,3 +13,9 @@ python3 -u gazebo_irl_hover21.py --namespace cf_leader --x 0.0 \
   --training-csv cdc/data/task2_run1.csv
 
   -------------------------------------------------------
+cd /root/usc_lqr_gazebo_test/IRL
+python3 demo_hover.py leader 3 cf_leader 0.0
+________________________________________________
+cd /root/usc_lqr_gazebo_test/IRL
+python3 demo_hover.py follower 3 cf_follower 1.0
+______________________________________________________________
