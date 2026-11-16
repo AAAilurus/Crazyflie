@@ -19,3 +19,26 @@ ________________________________________________
 cd /root/usc_lqr_gazebo_test/IRL
 python3 demo_hover.py follower 3 cf_follower 1.0
 ______________________________________________________________
+#tasks
+cd /root/usc_lqr_gazebo_test/IRL
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+unset USC_PYTHON_DIR
+rm -f cdc_csv/hover_test/velC2n_task1.csv
+PERT1_Z=0.1 PERT2_Z=0.1 timeout -s INT 50 python3 gazebo_irl_hover21.py \
+  --namespace cf_leader --x 0.0 --k-file gains/K_cdc_hover_vel_task1.csv \
+  --eta-roll-deg 0 --eta-pitch-deg 0 --eta-delta-T-scale-n 0.01 --eta-white 1.0 --eta-seed 1 \
+  --train-seconds 20 --training-csv cdc_csv/hover_test/velC2n_task1.csv 2>&1 | tail -30
+echo "lines: $(wc -l < cdc_csv/hover_test/velC2n_task1.csv 2>/dev/null || echo 0)"
+---------------------------------------------------------------------------
+cd /root/usc_lqr_gazebo_test/IRL
+source /opt/ros/humble/setup.bash
+source /root/usc_lqr_gazebo_test/ros2_ws/install/setup.bash
+unset USC_PYTHON_DIR
+rm -f cdc_csv/hover_test/velC2n_task2.csv
+PERT1_Z=0.2 PERT2_Z=0.2 timeout -s INT 50 python3 gazebo_irl_hover21.py \
+  --namespace cf_leader --x 0.0 --k-file gains/K_cdc_hover_vel_task2.csv \
+  --eta-roll-deg 0 --eta-pitch-deg 0 --eta-delta-T-scale-n 0.01 --eta-white 1.0 --eta-seed 2 \
+  --train-seconds 20 --training-csv cdc_csv/hover_test/velC2n_task2.csv 2>&1 | tail -30
+echo "lines: $(wc -l < cdc_csv/hover_test/velC2n_task2.csv 2>/dev/null || echo 0)"
+---------------------------------------------------------------
