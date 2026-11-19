@@ -69,6 +69,26 @@ wait $FPID
 echo "leader   -> $(wc -l < cdc_csv/hover_test/lf_leader_task3.csv 2>/dev/null || echo 0) lines"
 echo "follower -> $(wc -l < cdc_csv/hover_test/lf_follower_task3.csv 2>/dev/null || echo 0) lines"
 ------------------------------------------------------------------------------------------------------------
+#Battery Test
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+timeout -k 2s 20s python3 - << 'PY'
+import time, logging
+logging.basicConfig(level=logging.ERROR)
+import cflib.crtp
+from cflib.crazyflie import Crazyflie
+from cflib.crazyflie.log import LogConfig
+from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+cflib.crtp.init_drivers(); v = []
+with SyncCrazyflie("radio://0/80/2M/E7E7E7E7E7", cf=Crazyflie(rw_cache="./cache")) as scf:
+    lg = LogConfig(name="bat", period_in_ms=100); lg.add_variable("pm.vbat", "float")
+    scf.cf.log.add_config(lg); lg.data_received_cb.add_callback(lambda t, d, c: v.append(d["pm.vbat"])); lg.start()
+    time.sleep(3.0); lg.stop()
+V = sum(v) / len(v)
+print(f"\nbattery at rest: {V:.2f} V")
+print("FULL  -> fly the task" if V >= 4.10 else "OK    -> fly, but swap after this task" if V >= 4.00 else "LOW   -> charge before a 90 s task" if V >= 3.85 else "EMPTY -> charge it, do not fly")
+PY
+
+------------------------------------------------------------------------------------------------------------------
 Task 1
 
 bash
