@@ -88,6 +88,21 @@ print(f"\nbattery at rest: {V:.2f} V")
 print("FULL  -> fly the task" if V >= 4.10 else "OK    -> fly, but swap after this task" if V >= 4.00 else "LOW   -> charge before a 90 s task" if V >= 3.85 else "EMPTY -> charge it, do not fly")
 PY
 
+#crazyflie_L
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 -c "
+import cflib.crtp
+from cflib.crazyflie import Crazyflie
+from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+from cflib.crazyflie.log import LogConfig
+from cflib.crazyflie.syncLogger import SyncLogger
+cflib.crtp.init_drivers()
+with SyncCrazyflie('radio://0/80/2M/E7E7E7E703', cf=Crazyflie(rw_cache='./cache')) as scf:
+    lg = LogConfig(name='b', period_in_ms=100); lg.add_variable('pm.vbat', 'float')
+    with SyncLogger(scf, lg) as l:
+        for _, d, _ in l: v = d['pm.vbat']; print(f'Crazyflie_L battery {v:.2f} V  ->', 'OK to fly' if v >= 4.03 else 'CHARGE / SWAP FIRST'); break
+"
+
 ------------------------------------------------------------------------------------------------------------------
 Task 1
 
