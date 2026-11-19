@@ -69,4 +69,41 @@ wait $FPID
 echo "leader   -> $(wc -l < cdc_csv/hover_test/lf_leader_task3.csv 2>/dev/null || echo 0) lines"
 echo "follower -> $(wc -l < cdc_csv/hover_test/lf_follower_task3.csv 2>/dev/null || echo 0) lines"
 ------------------------------------------------------------------------------------------------------------
+Task 1
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task1.csv --rw-z 0.04 --rw-seed 1 --eta-std 0.01 --eta-seed 1 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task1.csv 2>&1 | tee hwlagF_task1.txt
+
+Task 2
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task2.csv --rw-z 0.05 --rw-seed 2 --eta-std 0.01 --eta-seed 2 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task2.csv 2>&1 | tee hwlagF_task2.txt
+
+Task 3
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task3.csv --rw-z 0.06 --rw-seed 3 --eta-std 0.01 --eta-seed 3 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task3.csv 2>&1 | tee hwlagF_task3.txt
+
+Task 4
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task4.csv --rw-z 0.07 --rw-seed 4 --eta-std 0.01 --eta-seed 4 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task4.csv 2>&1 | tee hwlagF_task4.txt
+
+Task 5
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task5.csv --rw-z 0.08 --rw-seed 5 --eta-std 0.01 --eta-seed 5 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task5.csv 2>&1 | tee hwlagF_task5.txt
+
+Task 6
+
+bash
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python
+python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.88.1.1 --vicon-object Crazyflie2_2 --heading-deg -90 --x 0.0 --y 0.0 --z 1.1 --yaw 0.0 --takeoff-seconds 4 --run-seconds 90 --land-z 0.05 --land-seconds 6 --loop-hz 200 --ext-pos-std 0.002 --hover-slope $(cat IRL_hw/gains/hover_slope.txt) --hover-trim $(cat IRL_hw/gains/hover_trim.txt) --kaug-file IRL_hw/gains/K_hwlagF_task6.csv --rw-z 0.09 --rw-seed 6 --eta-std 0.01 --eta-seed 6 --training-csv IRL_hw/cdc_csv/hover_test/hwlagF_task6.csv 2>&1 | tee hwlagF_task6.txt
+
+------------------------------------------------------------------------------------------------------------------
 
