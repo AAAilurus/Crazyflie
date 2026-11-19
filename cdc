@@ -107,3 +107,8 @@ python3 UTA_vicon_cdc_hover.py --uri radio://0/80/2M/E7E7E7E7E7 --vicon-host 10.
 
 ------------------------------------------------------------------------------------------------------------------
 
+cd ~/crazyflie_ws/UTA_lighthouse/cflib_python/IRL_hw/cdc
+python3 hw2_inverse.py --prefix ../cdc_csv/hover_test/hwlagE_task --truth ../gains/truth_hwlag.json --nv 2 --mem 6 --shared-phi --bias 2>&1 | tee hwlagE_inverse_out.txt | grep -E "K_bar=|shared|Q0_hat - Q0_true|^ +[1-6]  \[|mean \|\|"
+
+-------------------------------------------------------------
+
